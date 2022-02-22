@@ -28,7 +28,7 @@ To get a local copy follow these simple example steps.
 
 ## Live Demo 
 
-[Click here to see the To do list App](https://micky373.github.io/To_DO_List/dist/) 
+[Click here to see the To do list App](https://micky373.github.io/To_DO_List-2/dist/) 
 
 ## Author
 
