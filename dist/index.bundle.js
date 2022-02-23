@@ -482,90 +482,88 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _local_storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 /* harmony import */ var _remove_task_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
-/* harmony import */ var _complete_check_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(14);
-
 
 
 
 const taskContainer = document.querySelector('.task_container');
 
 const showActivity = (taskLists) => {
-    for (let i = 0; i < taskLists.length; i += 1) {
-        const div = document.createElement('div');
-        div.classList.add('task');
-        div.setAttribute('id', `${taskLists[i].index}`);
-        const theTask = document.createElement('div');
-        theTask.classList.add('the_task');
-        const checkBox = document.createElement('input');
-        checkBox.classList.add('checking');
-        checkBox.type = 'checkbox';
-        checkBox.id = taskLists[i].index;
-        checkBox.setAttribute('data-id', `${taskLists[i].index}`);
-        if (taskLists[i].completed == true) {
-            checkBox.setAttribute('checked', 'checked')
-        }
-        checkBox.addEventListener('change', (e) => {
-            const index = e.target.dataset.id
-            const deleteTask = e.target.parentNode.parentNode.querySelector('.to_do');
-            if (e.target.checked) {
-                deleteTask.style.textDecoration = "line-through"
-                deleteTask.style.color = "#e66465"
-                taskLists[index - 1].completed = true
-                checkBox.setAttribute('checked', 'checked')
-                ;(0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists)
-                window.location.reload()
-            } else {
-                deleteTask.style.textDecoration = "none"
-                deleteTask.style.color = "inherit"
-                taskLists[index - 1].completed = false
-                ;(0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists)
-            }
-        })
-        theTask.appendChild(checkBox);
-        const taskElement = document.createElement('input');
-        taskElement.type = 'text';
-        taskElement.classList.add('to_do');
-        taskElement.id = taskLists[i].index;
-        if (taskLists[i].completed == true) {
-            taskElement.classList.add('marked')
-        }
-        taskElement.setAttribute('data-id', `${taskLists[i].index}`);
-        taskElement.value = `${taskLists[i].description}`;
-        taskElement.addEventListener('input', (e) => {
-            const editTask = e.target.parentNode.parentNode;
-            const deleteIcon = editTask.querySelector('.delete_task');
-            e.target.parentNode.style.backgroundColor = 'lightgoldenrodyellow';
-            e.target.style.backgroundColor = 'lightgoldenrodyellow';
-            e.target.parentNode.parentNode.style.backgroundColor = 'lightgoldenrodyellow';
-            deleteIcon.classList.remove('none');
-            const index = e.target.dataset.id;
-            taskLists[index - 1].description = e.target.value;
-            (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists);
-        });
-        taskElement.addEventListener('blur', (e) => {
-            e.target.parentNode.style.backgroundColor = 'white';
-            e.target.style.backgroundColor = 'white';
-            e.target.parentNode.parentNode.style.backgroundColor = 'white';
-            setTimeout(() => {
-                window.location.reload();
-            }, 200);
-        });
-        theTask.appendChild(taskElement);
-        div.appendChild(theTask);
-        const deleteIcon = document.createElement('div');
-        deleteIcon.classList.add('delete_task');
-        deleteIcon.classList.add('none');
-        deleteIcon.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
-        deleteIcon.id = taskLists[i].index;
-        deleteIcon.addEventListener('click', (e) => {
-            const ref = e.target.parentElement.id;
-            (0,_remove_task_js__WEBPACK_IMPORTED_MODULE_1__["default"])(ref);
-            e.target.parentElement.parentElement.remove();
-            window.location.reload();
-        });
-        div.appendChild(deleteIcon);
-        taskContainer.appendChild(div);
+  for (let i = 0; i < taskLists.length; i += 1) {
+    const div = document.createElement('div');
+    div.classList.add('task');
+    div.setAttribute('id', `${taskLists[i].index}`);
+    const theTask = document.createElement('div');
+    theTask.classList.add('the_task');
+    const checkBox = document.createElement('input');
+    checkBox.classList.add('checking');
+    checkBox.type = 'checkbox';
+    checkBox.id = taskLists[i].index;
+    checkBox.setAttribute('data-id', `${taskLists[i].index}`);
+    if (taskLists[i].completed === true) {
+      checkBox.setAttribute('checked', 'checked');
     }
+    checkBox.addEventListener('change', (e) => {
+      const index = e.target.dataset.id;
+      const deleteTask = e.target.parentNode.parentNode.querySelector('.to_do');
+      if (e.target.checked) {
+        deleteTask.style.textDecoration = 'line-through';
+        deleteTask.style.color = '#e66465';
+        taskLists[index - 1].completed = true;
+        checkBox.setAttribute('checked', 'checked');
+        (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists);
+        window.location.reload();
+      } else {
+        deleteTask.style.textDecoration = 'none';
+        deleteTask.style.color = 'inherit';
+        taskLists[index - 1].completed = false;
+        (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists);
+      }
+    });
+    theTask.appendChild(checkBox);
+    const taskElement = document.createElement('input');
+    taskElement.type = 'text';
+    taskElement.classList.add('to_do');
+    taskElement.id = taskLists[i].index;
+    if (taskLists[i].completed === true) {
+      taskElement.classList.add('marked');
+    }
+    taskElement.setAttribute('data-id', `${taskLists[i].index}`);
+    taskElement.value = `${taskLists[i].description}`;
+    taskElement.addEventListener('input', (e) => {
+      const editTask = e.target.parentNode.parentNode;
+      const deleteIcon = editTask.querySelector('.delete_task');
+      e.target.parentNode.style.backgroundColor = 'lightgoldenrodyellow';
+      e.target.style.backgroundColor = 'lightgoldenrodyellow';
+      e.target.parentNode.parentNode.style.backgroundColor = 'lightgoldenrodyellow';
+      deleteIcon.classList.remove('none');
+      const index = e.target.dataset.id;
+      taskLists[index - 1].description = e.target.value;
+      (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists);
+    });
+    taskElement.addEventListener('blur', (e) => {
+      e.target.parentNode.style.backgroundColor = 'white';
+      e.target.style.backgroundColor = 'white';
+      e.target.parentNode.parentNode.style.backgroundColor = 'white';
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    });
+    theTask.appendChild(taskElement);
+    div.appendChild(theTask);
+    const deleteIcon = document.createElement('div');
+    deleteIcon.classList.add('delete_task');
+    deleteIcon.classList.add('none');
+    deleteIcon.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>';
+    deleteIcon.id = taskLists[i].index;
+    deleteIcon.addEventListener('click', (e) => {
+      const ref = e.target.parentElement.id;
+      (0,_remove_task_js__WEBPACK_IMPORTED_MODULE_1__["default"])(ref);
+      e.target.parentElement.parentElement.remove();
+      window.location.reload();
+    });
+    div.appendChild(deleteIcon);
+    taskContainer.appendChild(div);
+  }
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (showActivity);
@@ -624,33 +622,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _local_storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
-
-
-let taskLists = JSON.parse(localStorage.getItem('data'));
-
-const finish = () => {
-    console.log(taskLists)
-    const result = taskLists.filter((value) => value.completed !== true);
-    taskLists = result;
-    console.log(taskLists)
-    for (let i = 0; i < taskLists.length; i += 1) {
-        taskLists[i].index = i + 1;
-    }
-    (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists);
-    window.location.reload()
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (finish);
-
-/***/ }),
-/* 15 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _local_storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
 /* harmony import */ var _show_activity_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
 
 
@@ -670,6 +641,31 @@ const addTask = () => {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addTask);
 
+
+/***/ }),
+/* 15 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _local_storage_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12);
+
+
+let taskLists = JSON.parse(localStorage.getItem('data'));
+
+const finish = () => {
+  const result = taskLists.filter((value) => value.completed !== true);
+  taskLists = result;
+  for (let i = 0; i < taskLists.length; i += 1) {
+    taskLists[i].index = i + 1;
+  }
+  (0,_local_storage_js__WEBPACK_IMPORTED_MODULE_0__.addToLocalStorage)(taskLists);
+  window.location.reload();
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (finish);
 
 /***/ })
 /******/ 	]);
@@ -746,9 +742,9 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _modules_show_activity_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
-/* harmony import */ var _modules_add_task_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15);
+/* harmony import */ var _modules_add_task_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(14);
 /* harmony import */ var _modules_local_storage_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
-/* harmony import */ var _modules_complete_check_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
+/* harmony import */ var _modules_complete_check_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(15);
 
 
 
@@ -762,12 +758,12 @@ let taskLists = [];
 // Add task
 
 const activity = document.querySelector('#add_task');
-const finishTask = document.querySelector('.finish')
+const finishTask = document.querySelector('.finish');
 
 finishTask.addEventListener('click', () => {
-  finishTask.style.textDecoration = "underline"
-  ;(0,_modules_complete_check_js__WEBPACK_IMPORTED_MODULE_4__["default"])()
-})
+  finishTask.style.textDecoration = 'underline';
+  (0,_modules_complete_check_js__WEBPACK_IMPORTED_MODULE_4__["default"])();
+});
 
 activity.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
@@ -781,7 +777,6 @@ activity.addEventListener('keypress', (e) => {
 window.onload = () => {
   if (localStorage.getItem('data') === null) {
     (0,_modules_show_activity_js__WEBPACK_IMPORTED_MODULE_1__["default"])(taskLists);
-    (0,_modules_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.addToLocalStorage)(taskLists);
   } else {
     const localActivities = JSON.parse(localStorage.getItem('data'));
     for (let i = 0; i < localActivities.length; i += 1) {
@@ -792,8 +787,8 @@ window.onload = () => {
     for (let i = 0; i < taskLists.length; i += 1) {
       taskLists[i].index = i + 1;
     }
-    (0,_modules_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.addToLocalStorage)(taskLists);
   }
+  (0,_modules_local_storage_js__WEBPACK_IMPORTED_MODULE_3__.addToLocalStorage)(taskLists);
 };
 
 })();

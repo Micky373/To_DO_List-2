@@ -30,7 +30,6 @@ activity.addEventListener('keypress', (e) => {
 window.onload = () => {
   if (localStorage.getItem('data') === null) {
     showActivity(taskLists);
-    addToLocalStorage(taskLists);
   } else {
     const localActivities = JSON.parse(localStorage.getItem('data'));
     for (let i = 0; i < localActivities.length; i += 1) {
@@ -41,6 +40,6 @@ window.onload = () => {
     for (let i = 0; i < taskLists.length; i += 1) {
       taskLists[i].index = i + 1;
     }
-    addToLocalStorage(taskLists);
   }
+  addToLocalStorage(taskLists);
 };
